@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import { Bell, LogOut, User } from 'lucide-react'
+import { Sidebar } from '@/components/Sidebar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,7 +14,43 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-blue-200`}>{children}</body>
+      <body className={`${inter.className} bg-zinc-100`}>
+        <div className="grid h-screen w-screen grid-cols-[200px_auto]">
+          <Sidebar />
+
+          <div>
+            <div className="flex items-center justify-between bg-zinc-50 p-4">
+              <strong>Aluguéis</strong>
+
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <div className="flex flex-col text-right text-[0.625rem]">
+                    Bem vindo(a)
+                    <span className="text-xs">Adrian Mouzinho</span>
+                  </div>
+
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-zinc-600 bg-zinc-300">
+                    <User className="h-4 w-4" />
+                  </div>
+                </div>
+
+                <span className="cursor-pointer rounded-md border border-zinc-300 bg-white p-1">
+                  <Bell className="h-4 w-4" />
+                </span>
+
+                <a
+                  href=""
+                  className="cursor-pointer rounded-md border border-zinc-300 bg-white p-1"
+                >
+                  <LogOut className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+
+            {children}
+          </div>
+        </div>
+      </body>
     </html>
   )
 }
